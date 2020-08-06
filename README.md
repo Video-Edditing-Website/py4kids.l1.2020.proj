@@ -11,4 +11,4 @@ Run server.py after installing flask. You should be able to access the server at
 URLs
 
 * http://localhost:8181 
-* http://localhost:8181/index.html 
+* http://localhost:8181/static/index.html 
