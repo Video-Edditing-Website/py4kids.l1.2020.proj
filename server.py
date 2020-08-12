@@ -17,18 +17,23 @@ def save_users_dict(users):
     f.close()
 
 @app.route("/")
+def show_login_page():
+    return  redirect("/static/login.html")
+
+
+@app.route("/login", methods=["post"])
 def do_login():
-    return redirect("/static/login.html")
     email = request.form['login[username]']
     password = request.form['login[password]']
-    if email and password in users:
-        return flask.render_template("welcome.html")
-    else:
-        return flask.render_template("login_failed.html")
+    if email in users:
+        stored_password = users[email]
+        if stored_password == password:
+            return flask.render_template("welcome.html", user_email=email)
+
+    return flask.render_template("login_failed.html")
 
 
-
-@app.route("/static/sign_up.html")
+@app.route("/sign_up", methods=["post"])
 def do_sign_up():
     form = request.form
     print(form)
@@ -38,7 +43,6 @@ def do_sign_up():
     users[email] = password
     save_users_dict(users)
     return flask.render_template("welcome.html")
-
 
 
 if __name__ == '__main__':
