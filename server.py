@@ -1,14 +1,15 @@
 from flask import Flask, request, redirect
-import flask as f
+import flask
 import json
 
 app = Flask(__name__)
 def read_users_dict():
-    f = open("users.json", "r")
-    users = json.load(f)
-    f.close()
+    flask = open("users.json", "r")
+    users = json.load(flask)
+    flask.close()
     return users
 
+users = read_users_dict()
 
 def save_users_dict(users):
     f = open("users.json", "w")
@@ -18,9 +19,16 @@ def save_users_dict(users):
 @app.route("/")
 def do_login():
     return redirect("/static/login.html")
+    email = request.form['login[username]']
+    password = request.form['login[password]']
+    if email and password in users:
+        return flask.render_template("welcome.html")
+    else:
+        return flask.render_template("login_failed.html")
 
 
-@app.route("/login", methods=['POST'])
+
+@app.route("/static/sign_up.html")
 def do_sign_up():
     form = request.form
     print(form)
@@ -29,7 +37,7 @@ def do_sign_up():
     users = read_users_dict()
     users[email] = password
     save_users_dict(users)
-    return f.render_template("welcome.html")
+    return flask.render_template("welcome.html")
 
 
 
