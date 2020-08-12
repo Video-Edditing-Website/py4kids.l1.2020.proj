@@ -1,23 +1,34 @@
-from flask import Flask, request
+from flask import Flask, request, redirect
 import flask as f
+import json
 
 app = Flask(__name__)
+def read_users_dict():
+    f = open("users.json", "r")
+    users = json.load(f)
+    f.close()
+    return users
 
+
+def save_users_dict(users):
+    f = open("users.json", "w")
+    json.dump(users, f)
+    f.close()
 
 @app.route('/')
 def hello_world():
-    return 'Hello, World!'
+    return  redirect("/static/sign_up.html")
 
 
 @app.route("/login", methods=['POST'])
 def do_login():
-    email = request.form['email']
-    password = request.form['password']
-
-    if not (password == "abc123") :
-        return f.render_template("login_failed.html")
-    else:
-        return f.render_template("welcome.html", user_name=email)
+    form = request.form
+    print(form)
+    email = request.form['login[username]']
+    password = request.form['login[password]']
+    users = read_users_dict()
+    users[email] = password
+    save_users_dict(users)
 
 
 @app.route("/welcome/<email>")
