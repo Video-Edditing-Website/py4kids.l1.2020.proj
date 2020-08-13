@@ -42,7 +42,7 @@ def do_sign_up():
     users = read_users_dict()
     users[email] = password
     save_users_dict(users)
-    return flask.render_template("welcome.html")
+    return flask.render_template("welcome.html", user_email=email)
 
 
 if __name__ == '__main__':

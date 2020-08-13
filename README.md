@@ -3,7 +3,7 @@
 
 You need to install flask - pycharm will do this for you. If you use conda, use 
 ```conda activate <envname>``` (replace envname and the <>'s with the conda envierment you want to run) followed by ```conda install flask```. 
-Make sure that you are using this environment in pycham or visual code or it won't work, unless that env already has flask too. 
+Make sure that you are using this environment in pycharm or visual code or it won't work, unless that env already has flask too. 
 
 
 ## Running the server 
