@@ -5,7 +5,7 @@
     <title>Title</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
   <script  src="sign_up.js"></script>
-   <link rel="stylesheet" href="sign_up.css">
+   <link rel="stylesheet" href="login.css">
    <script >
    </script>
 </head>
@@ -18,7 +18,7 @@
          <img src="Youtube logo 2.png"></a>
     </div>
 
-    <form id="login" action="/login" method="POST">
+    <form id="login" action="/sign_up" method="POST">
       <label for="username">User Name</label>
       <input  required name="login[username]" type="text" autocapitalize="off" autocorrect="off"/>
 
@@ -27,8 +27,10 @@
       <div class="hide-show">
         <span>Show</span>
       </div>
-      <button type="submit">Sign_Up!</button>
+      <button type="submit">Sign Up!</button>
     </form>
+      <a href="/"><button type="button">Already have an account? Click Here!</button></a>
+      Login made possible by <a href="https://speckyboy.com/login-pages-html5-css/">speckyboy.com</a>
   </section>
 </div>
 </body>
