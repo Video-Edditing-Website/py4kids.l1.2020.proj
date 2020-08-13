@@ -40,9 +40,12 @@ def do_sign_up():
     email = request.form['login[username]']
     password = request.form['login[password]']
     users = read_users_dict()
-    users[email] = password
-    save_users_dict(users)
-    return flask.render_template("welcome.html", user_email=email)
+    if email in users:
+        return flask.render_template("Sign_up_Email_used.html", email)
+    else:
+        users[email] = password
+        save_users_dict(users)
+        return flask.render_template("welcome.html", user_email=email)
 
 
 if __name__ == '__main__':
