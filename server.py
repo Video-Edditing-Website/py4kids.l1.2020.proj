@@ -1,5 +1,5 @@
 from flask import Flask, request, redirect
-import flask
+import flask as f
 import json
 
 app = Flask(__name__)
@@ -28,9 +28,9 @@ def do_login():
     if email in users:
         stored_password = users[email]
         if stored_password == password:
-            return flask.render_template("welcome.html", user_email=email)
+            return f.render_template("welcome.html", user_email=email)
 
-    return flask.render_template("login_failed.html")
+    return f.render_template("login_failed.html")
 
 
 @app.route("/sign_up", methods=["post"])
@@ -41,12 +41,12 @@ def do_sign_up():
     password = request.form['login[password]']
     users = read_users_dict()
     if email in users:
-        return flask.render_template("Sign_up_Email_used.html", email=email
+        return f.render_template("Sign_up_Email_used.html", email=email
                                      )
     else:
         users[email] = password
         save_users_dict(users)
-        return flask.render_template("welcome.html", user_email=email)
+        return f.render_template("welcome.html", user_email=email)
 
 
 if __name__ == '__main__':
