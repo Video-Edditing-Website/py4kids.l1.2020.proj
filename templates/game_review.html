@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h2>Reviewing games is fun! Sometimes.</h2>
+    <form action="/submit_review" method="post" >
+        <label for="pet-select">Choose a game:</label>
+        <select name="games" id="game-select">
+            <option value="">--Please choose a game--</option>
+            <option value="Roblox">Roblox</option>
+            <option value="Minecraft">Minecraft</option>
+            <option value="bonk.io">bonk.io</option>
+        </select>
+        <div>
+            <label for="title">Review title:</label>
+            <input type="text" id="title" name="title" required
+            minlength="4" maxlength="60" size="40">
+        </div>
+        <label for="stars-select">Choose a game:</label>
+        <select name="stars" id="stars-select">
+            <option value="">--Please choose a rating--</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+        <label for="review">Write your review:</label>
+        <textarea id="review" name="review"
+            rows="15" cols="80">
+        </textarea>
+        <button type="submit">Submit review</button>
+    </form>
+</body>
+</html>
