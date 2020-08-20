@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="game_review.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div>
     <h2>Review a game!</h2>
-    <form action="/submit_review" method="post" >
+    <form action="/submit_review" method="post" class="selection" >
         <label for="pet-select">Choose a game:</label>
-        <select name="games" id="game-select">
+        <select name="games" id="game-select" >
             <option value="">--Please choose a game--</option>
             <option value="Roblox">Roblox</option>
             <option value="Minecraft">Minecraft</option>
             <option value="bonk.io">bonk.io</option>
+            <option value="other (Write the game name in the title)">other (Write the game name in the title)</option>
         </select>
 </div>
         <div>
