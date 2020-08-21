@@ -54,10 +54,11 @@ def do_submit_review():
     stars = request.form['stars']
     stars = int(stars)
     review = request.form['review']
-    if game == "other":
+    if game == "Other":
         return f.render_template("other=what.html")
     print("The game is {}.".format(game))
-    print("[Title: {}. Stars: {}".format(title, stars))
+    print("Title: {}.".format(title))
+    print("Stars: {}.".format(stars))
     print("{}".format(review))
     review_id = uuid.uuid1()
     review_id = str(review_id)
