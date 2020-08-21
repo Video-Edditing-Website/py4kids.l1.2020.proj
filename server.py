@@ -15,9 +15,9 @@ def save_review(review_id, review_to_save):
 
 
 def read_users_dict():
-    flask = open("users.json", "r")
-    users = json.load(flask)
-    flask.close()
+    users_file = open("users.json", "r")
+    users = json.load(users_file)
+    users_file.close()
     return users
 
 
@@ -29,6 +29,9 @@ def save_users_dict(users):
     json.dump(users, f)
     f.close()
 
+def get_all_review_titles():
+    return []
+
 
 @app.route("/")
 def show_login_page():
@@ -39,10 +42,12 @@ def show_login_page():
 def do_login():
     email = request.form['login[username]']
     password = request.form['login[password]']
+
     if email in users:
         stored_password = users[email]
         if stored_password == password:
-            return f.render_template("welcome.html", user_email=email)
+            title_list = get_all_review_titles()
+            return f.render_template("welcome.html", user_email=email, titles=title_list)
 
     return f.render_template("login_failed.html")
 
@@ -54,8 +59,8 @@ def do_submit_review():
     stars = request.form['stars']
     stars = int(stars)
     review = request.form['review']
-    if game == "Other":
-        return f.render_template("other=what.html")
+    #if game == "Other":
+        #return f.render_template("other=what.html")
     print("The game is {}.".format(game))
     print("Title: {}.".format(title))
     print("Stars: {}.".format(stars))
