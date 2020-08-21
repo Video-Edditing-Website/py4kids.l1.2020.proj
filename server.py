@@ -88,5 +88,8 @@ def do_sign_up():
         return f.render_template("welcome.html", user_email=email)
 
 
+
+
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8181, debug=True)
