@@ -8,5 +8,20 @@
 <h1>Welcome to review a game {{user_email}}!</h1>
 <a href="/game_review"><button type="button">Write a review!</button></a>
 <h3>Reviews:</h3>
+<table bgcolor="black">
+    <thead>
+    <tr bgcolor="white">
+        <th>Game</th><th>Review Title</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for review in reviews -%}
+    <tr bgcolor="white">
+        <td>{{ review.game }}</td><td><a href="/view/{{review.id}}">{{ review.title}}</a></td>
+    </tr>
+    {%- endfor %}
+    </tbody>
+</table>
+
 </body>
 </html>

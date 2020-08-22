@@ -3,6 +3,7 @@ import flask as f
 import json
 import uuid
 import os
+import review_db as db
 
 app = Flask(__name__)
 
@@ -15,9 +16,9 @@ def save_review(review_id, review_to_save):
 
 
 def read_users_dict():
-    flask = open("users.json", "r")
-    users = json.load(flask)
-    flask.close()
+    users_file = open("users.json", "r")
+    users = json.load(users_file)
+    users_file.close()
     return users
 
 
@@ -30,6 +31,13 @@ def save_users_dict(users):
     f.close()
 
 
+@app.route("/view/<review_id>")
+def show_review(review_id):
+    review_file = "reviews/"+review_id+".json"
+    review = db.read_review_file(review_file)
+    return f.render_template("view_review.html", review=review)
+
+
 @app.route("/")
 def show_login_page():
     return redirect("/static/login.html")
@@ -39,10 +47,12 @@ def show_login_page():
 def do_login():
     email = request.form['login[username]']
     password = request.form['login[password]']
+
     if email in users:
         stored_password = users[email]
         if stored_password == password:
-            return f.render_template("welcome.html", user_email=email)
+            reviews = db.get_review_list()
+            return f.render_template("welcome.html", user_email=email, reviews=reviews)
 
     return f.render_template("login_failed.html")
 
@@ -54,15 +64,15 @@ def do_submit_review():
     stars = request.form['stars']
     stars = int(stars)
     review = request.form['review']
-    if game == "Other":
-        return f.render_template("other=what.html")
-    print("The game is {}.".format(game))
-    print("Title: {}.".format(title))
-    print("Stars: {}.".format(stars))
-    print("{}".format(review))
+    #if game == "Other":
+        #return f.render_template("other=what.html")
+    #print("The game is {}.".format(game))
+    #print("Title: {}.".format(title))
+    #print("Stars: {}.".format(stars))
+    #print("{}".format(review))
     review_id = uuid.uuid1()
     review_id = str(review_id)
-    review_to_save = {'game': game, 'title': title, 'stars': stars, 'review': review}
+    review_to_save = { 'id':review_id, 'game': game, 'title': title, 'stars': stars, 'review': review}
     save_review(review_id, review_to_save)
     return f.render_template("thanks_for_review.html")
 
