@@ -3,6 +3,7 @@ import flask as f
 import json
 import uuid
 import os
+import review_db as db
 
 app = Flask(__name__)
 
@@ -29,8 +30,12 @@ def save_users_dict(users):
     json.dump(users, f)
     f.close()
 
-def get_all_review_titles():
-    return []
+
+@app.route("/view/<review_id>")
+def show_review(review_id):
+    review_file = "reviews/"+review_id+".json"
+    review = db.read_review_file(review_file)
+    return f.render_template("view_review.html", review=review)
 
 
 @app.route("/")
@@ -46,8 +51,8 @@ def do_login():
     if email in users:
         stored_password = users[email]
         if stored_password == password:
-            title_list = get_all_review_titles()
-            return f.render_template("welcome.html", user_email=email, titles=title_list)
+            reviews = db.get_review_list()
+            return f.render_template("welcome.html", user_email=email, reviews=reviews)
 
     return f.render_template("login_failed.html")
 
@@ -61,13 +66,13 @@ def do_submit_review():
     review = request.form['review']
     #if game == "Other":
         #return f.render_template("other=what.html")
-    print("The game is {}.".format(game))
-    print("Title: {}.".format(title))
-    print("Stars: {}.".format(stars))
-    print("{}".format(review))
+    #print("The game is {}.".format(game))
+    #print("Title: {}.".format(title))
+    #print("Stars: {}.".format(stars))
+    #print("{}".format(review))
     review_id = uuid.uuid1()
     review_id = str(review_id)
-    review_to_save = {'game': game, 'title': title, 'stars': stars, 'review': review}
+    review_to_save = { 'id':review_id, 'game': game, 'title': title, 'stars': stars, 'review': review}
     save_review(review_id, review_to_save)
     return f.render_template("thanks_for_review.html")
 
