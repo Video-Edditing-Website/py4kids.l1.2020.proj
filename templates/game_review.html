@@ -11,7 +11,7 @@
     <form action="/submit_review" method="post" class="selection" >
         <label for="pet-select">Choose a game:</label>
         <select name="games" id="game-select" >
-            <option value="">--Please choose a game--</option>
+            <option value="Invaild">--Please choose a game--</option>
             <option value="Roblox">Roblox</option>
             <option value="Minecraft">Minecraft</option>
             <option value="bonk.io">bonk.io</option>
@@ -24,12 +24,12 @@
         <div>
             <label for="title">Review title:</label>
             <input type="text" id="title" name="title" required
-            minlength="4" maxlength="60" size="40">
+            minlength="2" maxlength="10" size="40">
         </div>
 <div>
         <label for="stars-select">Choose a rating:</label>
         <select name="stars" id="stars-select">
-            <option value="">--Please choose a rating--</option>
+            <option value="Invaild">--Please choose a rating--</option>
             <option value="1">1 star</option>
             <option value="2">2 stars</option>
             <option value="3">3 stars</option>
