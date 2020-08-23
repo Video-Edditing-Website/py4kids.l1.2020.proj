@@ -33,7 +33,7 @@ def save_users_dict(users):
 
 @app.route("/view/<review_id>")
 def show_review(review_id):
-    review_file = "reviews/"+review_id+".json"
+    review_file = "reviews/" + review_id + ".json"
     review = db.read_review_file(review_file)
     return f.render_template("view_review.html", review=review)
 
@@ -64,17 +64,16 @@ def do_submit_review():
     stars = request.form['stars']
     stars = int(stars)
     review = request.form['review']
-    #if game == "Other":
-        #return f.render_template("other=what.html")
-    #print("The game is {}.".format(game))
-    #print("Title: {}.".format(title))
-    #print("Stars: {}.".format(stars))
-    #print("{}".format(review))
-    review_id = uuid.uuid1()
-    review_id = str(review_id)
-    review_to_save = { 'id':review_id, 'game': game, 'title': title, 'stars': stars, 'review': review}
-    save_review(review_id, review_to_save)
-    return f.render_template("thanks_for_review.html")
+    if game == "Invaild":
+        return f.render_template("Invaild_game_choice.html")
+    elif stars == "Invaild":
+        return f.render_template("Invaild_game_choice.html")
+    else:
+        review_id = uuid.uuid1()
+        review_id = str(review_id)
+        review_to_save = {'id': review_id, 'game': game, 'title': title, 'stars': stars, 'review': review}
+        save_review(review_id, review_to_save)
+        return f.render_template("thanks_for_review.html")
 
 
 @app.route("/game_review")
@@ -96,9 +95,6 @@ def do_sign_up():
         users[email] = password
         save_users_dict(users)
         return f.render_template("welcome.html", user_email=email)
-
-
-
 
 
 if __name__ == '__main__':
