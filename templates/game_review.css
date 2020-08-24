@@ -1,0 +1,13 @@
+body{
+    background: #262626;
+    color: white;
+    font-family: helvetica, sans-serif;
+    text-align: center;
+}
+.selection{
+    background-color: #262626;
+}
+.review{
+    font-family: helvetica, sans-serif;
+    padding: .5em .25em;
+}
