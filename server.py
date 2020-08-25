@@ -78,7 +78,7 @@ def do_submit_review():
 
 @app.route("/game_review")
 def do_game_review():
-    return f.render_template("game_review.html")
+    return f.render_template("/game_review.html")
 
 
 @app.route("/sign_up", methods=["post"])

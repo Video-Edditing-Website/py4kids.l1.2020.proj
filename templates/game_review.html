@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="game_review.css">
+    <link rel="stylesheet" href="/static/game_review.css">
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -23,7 +23,9 @@
 </div>
         <div>
             <label for="title">Review title:</label>
-            <input type="text" id="title" name="title" required
+            <input type="text" id="title" name="title"
+                   placeholder="Write your title here!"
+                   required
             minlength="2" maxlength="10" size="40">
         </div>
 <div>
@@ -41,9 +43,9 @@
     <label for="review">Write your review:</label>
     <br>
         <textarea id="review"
+                  placeholder="Write your review here!"
                   name="review"
-            rows="15" cols="80">
-        </textarea>
+            rows="15" cols="80"></textarea>
     <br>
         <button type="submit">Submit review</button>
 </div>
