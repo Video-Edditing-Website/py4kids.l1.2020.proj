@@ -7,7 +7,7 @@
 </head>
 <body>
 <div>
-    <h2>Review a game!</h2>
+    <h2>Review a game! {{username}}</h2>
     <form action="/submit_review" method="post" class="selection" >
         <label for="pet-select">Choose a game:</label>
         <select name="games" id="game-select" >
@@ -26,12 +26,12 @@
             <input type="text" id="title" name="title"
                    placeholder="Write your title here!"
                    required
-            minlength="2" maxlength="10" size="40">
+            minlength="2" maxlength="60" size="40">
         </div>
 <div>
         <label for="stars-select">Choose a rating:</label>
         <select name="stars" id="stars-select">
-            <option value="Invaild">--Please choose a rating--</option>
+            <option value="0">--Please choose a rating--</option>
             <option value="1">1 star</option>
             <option value="2">2 stars</option>
             <option value="3">3 stars</option>
