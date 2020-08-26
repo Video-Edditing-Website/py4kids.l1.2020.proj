@@ -41,6 +41,8 @@ def show_review(review_id):
 
 @app.route("/")
 def show_login_page():
+    if 'username' in session:
+        return goto_welcome(session['username'])
     return redirect("/static/login.html")
 
 
@@ -48,14 +50,17 @@ def show_login_page():
 def do_login():
     email = request.form['login[username]']
     password = request.form['login[password]']
-
     if email in users:
         stored_password = users[email]
         if stored_password == password:
-            session['username'] = email
-            reviews = db.get_review_list()
-            return f.render_template("welcome.html", user_email=email, reviews=reviews)
+            return goto_welcome(email)
     return f.render_template("login_failed.html")
+
+
+def goto_welcome(email):
+    session['username'] = email
+    reviews = db.get_review_list()
+    return f.render_template("welcome.html", user_email=email, reviews=reviews)
 
 
 @app.route("/submit_review", methods=["post"])
