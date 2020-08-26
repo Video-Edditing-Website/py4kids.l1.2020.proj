@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="static/view_review.css" type="text/css">
+    <link rel="stylesheet" href="/static/view_review.css" type="text/css">
     <title>Game reviews</title>
 </head>
 <body>
-    <h2>{{review.game}}</h2>
+<table>    
+    <td><h2>{{review.game}}</h2>
     <h2>{{review.title}}</h2>
     <h3>Stars: {{review.stars}}</h3>
+    </td>
+</table>
     <div>
         {{review.review}}
     </div>
