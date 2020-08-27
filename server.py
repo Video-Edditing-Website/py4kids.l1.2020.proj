@@ -111,13 +111,11 @@ def do_sign_up():
         return f.render_template("welcome.html", user_email=email)
 
 
-@app.route("/logout", methods=["post"])
+@app.route("/logout", methods=["get"])
 def logout():
-    session.pop["username"]
-    if not ('username' in session):
-        return show_login_page()
-    else:
-        return f.render_template("Something_went_wrong.html")
+    session.pop("username", None)
+    return show_login_page()
+
 
 
 if __name__ == '__main__':
