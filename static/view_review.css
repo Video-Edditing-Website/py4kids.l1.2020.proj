@@ -2,6 +2,9 @@ body{
     font-family: helvetica, sans-serif;
     background: #262626;
     color: white;
-    text-align: center
+    align-content: center;
     font-size: medium;
+}
+table{
+    text-align: center;
 }
