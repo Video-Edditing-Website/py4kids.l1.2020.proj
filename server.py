@@ -15,6 +15,7 @@ def hash_pwd(pwd):
     md5.update(pwd.encode('utf-8'))
     return md5.digest().hex()
 
+
 def save_review(review_id, review_to_save):
     file_name = os.path.join("reviews", review_id + ".json")
     f = open(file_name, "w")
@@ -56,9 +57,10 @@ def show_login_page():
 def do_login():
     email = request.form['login[username]']
     password = request.form['login[password]']
+    pwd = hash_pwd(password)
     if email in users:
         stored_password = users[email]
-        if stored_password == password:
+        if stored_password == pwd:
             return goto_welcome(email)
     return f.render_template("login_failed.html")
 
@@ -108,7 +110,6 @@ def do_sign_up():
     email = request.form['login[username]']
     password = request.form['login[password]']
     users = read_users_dict()
-    supplied_pwd = password
     pwd_hash = hash_pwd(password)
     password = pwd_hash
     if email in users:
@@ -124,7 +125,6 @@ def do_sign_up():
 def logout():
     session.pop("username", None)
     return show_login_page()
-
 
 
 if __name__ == '__main__':
