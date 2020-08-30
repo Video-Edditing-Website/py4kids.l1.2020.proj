@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Welcome!</title>
+    <link type="text/css" href="/static/welcome.css" rel="stylesheet">
 </head>
 <body>
-<h1>Welcome to review a game {{user_email}}!</h1>
+<h1>Welcome to review a game {{user_email}}!</h1> <a href="/logout"><button type="button">Log out!</button></a>
 <a href="/game_review"><button type="button">Write a review!</button></a>
 <h3>Reviews:</h3>
 <table bgcolor="black">
     <thead>
-    <tr bgcolor="white">
-        <th>Game</th><th>Review Title</th>
+    <tr bgcolor="white" >
+        <th><font color="black">Game</th><th><font color="black">Review Title</th>
     </tr>
     </thead>
     <tbody>
     {% for review in reviews -%}
     <tr bgcolor="white">
-        <td>{{ review.game }}</td><td><a href="/view/{{review.id}}">{{ review.title}}</a></td>
+        <td><font color="black">{{ review.game }}</td><td><a href="/view/{{review.id}}">{{ review.title}}</a></td>
     </tr>
     {%- endfor %}
     </tbody>

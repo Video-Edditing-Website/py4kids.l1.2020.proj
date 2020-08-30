@@ -4,9 +4,16 @@ import json
 import uuid
 import os
 import review_db as db
+import hashlib as h
 
 app = Flask(__name__)
 app.secret_key = "any random string"
+
+
+def hash_pwd(pwd):
+    md5 = h.md5()
+    md5.update(pwd.encode('utf-8'))
+    return md5.digest().hex()
 
 
 def save_review(review_id, review_to_save):
@@ -50,9 +57,10 @@ def show_login_page():
 def do_login():
     email = request.form['login[username]']
     password = request.form['login[password]']
+    pwd = hash_pwd(password)
     if email in users:
         stored_password = users[email]
-        if stored_password == password:
+        if stored_password == pwd:
             return goto_welcome(email)
     return f.render_template("login_failed.html")
 
@@ -102,6 +110,8 @@ def do_sign_up():
     email = request.form['login[username]']
     password = request.form['login[password]']
     users = read_users_dict()
+    pwd_hash = hash_pwd(password)
+    password = pwd_hash
     if email in users:
         return f.render_template("Sign_up_Email_used.html", email=email
                                  )
@@ -109,6 +119,12 @@ def do_sign_up():
         users[email] = password
         save_users_dict(users)
         return f.render_template("welcome.html", user_email=email)
+
+
+@app.route("/logout", methods=["get"])
+def logout():
+    session.pop("username", None)
+    return show_login_page()
 
 
 if __name__ == '__main__':
