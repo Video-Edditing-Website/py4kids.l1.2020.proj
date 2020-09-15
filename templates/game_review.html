@@ -2,12 +2,20 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="/static/game_review.css">
+
+    <!---<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/static/game_review.js"></script>
+    <script>
+        $( function(){
+        init_app();
+        });
+    </script>-->
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <div>
-    <h2>Review a game! {{username}}</h2>
+    <h2>Review a game! {{username}}</h2> <a href="/"><button type="button">Go Back!</button></a>
     <form action="/submit_review" method="post" class="selection" >
         <label for="pet-select">Choose a game:</label>
         <select name="games" id="game-select" >
@@ -46,6 +54,8 @@
                   placeholder="Write your review here!"
                   name="review"
             rows="15" cols="80"></textarea>
+    <br>
+    <h1>Made by team SSP.</h1>
     <br>
         <button type="submit">Submit review</button>
 </div>
