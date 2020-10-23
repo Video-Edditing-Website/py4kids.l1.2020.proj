@@ -5,6 +5,12 @@
     <title>Welcome!</title>
     <link type="text/css" href="/static/welcome.css" rel="stylesheet">
 </head>
+
+
+
+
+
+
 <body>
 <h1>Welcome to review a game {{user_email}}!</h1> <a href="/logout"><button type="button">Log out!</button></a>
 <a href="/game_review"><button type="button">Write a review!</button></a>
@@ -20,9 +26,24 @@
     <tr bgcolor="white">
         <td><font color="black">{{ review.game }}</td><td><a href="/view/{{review.id}}">{{ review.title}}</a></td>
     </tr>
+
+    
+
     {%- endfor %}
     </tbody>
 </table>
-<h1>Made by team SSP.</h1>
+
+<table>
+    <tbody>
+    <tr>
+        <td bgcolor="white" style="height:2px"><a class="policy" href="https://sway.office.com/pn1qrJolsSN28B1Y?ref=Link"><h3 class="">Click here to see our privacy policy</h3></a></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div><h1>Made by team SSP.</h1></div>
+
+
 </body>
 </html>
