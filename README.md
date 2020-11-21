@@ -1,5 +1,6 @@
 # py4kids.l1.2020.proj
 2020 Level 1 Project for team SSP
+DISCONTINUED
 
 You need to install flask - pycharm will do this for you. If you use conda, use 
 ```conda activate <envname>``` (replace envname and the <>'s with the conda envierment you want to run) followed by ```conda install flask```. 
